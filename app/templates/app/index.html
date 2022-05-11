@@ -26,7 +26,7 @@
 <!-- ===============================================-->
 <!--    header ends here -->
 <!-- ===============================================-->
-
+<body>
 <div class="d-flex flex-column flex-root">
     <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
         <div
@@ -38,7 +38,71 @@
                     <!--    form starts here -->
                     <!-- ===============================================-->
 
-                    {% include "form/templates/form_step_b.html" %}
+                    <form action="/submitForm" class="container" method="POST" id="form" name="form">
+                        {% csrf_token %}
+                        <div class="text-center pb-8"><img alt="ROWT Logo" src="/static/assets/media/logos/logo_primary_letter.png"
+                                class="max-h-20px" />
+                        </div>
+                    
+                        <div class="">
+                    
+                            <div class="pb-4 text-center">
+                                <h3 class="font-weight-boldest text-dark font-size-h2 display-4">ESTIMATE
+                                </h3>
+                                <p class="text-muted font-weight-bold font-size-md first" id="firstP">ROWT uses <code>Page Count</code> & <code>ARPU</code> to
+                                    estimate <code>Crawls</code>, <code>Views</code>, & <code>Sales</code>.<br />
+                                    Next, the <code>Estimate</code> is then applied to calculate the <mark>ROWT</mark> of a site.
+                                </p>
+                                <p class="text-muted font-weight-bold font-size-md second" id="secondP">Data such as <code>ROWT Estimates</code> are often sent to business
+                                    emails.<br />
+                                    Therefore, please provide yours to <mark>Get Your Estimate</mark> in your inbox.
+                                </p>
+                            </div>
+                    
+                            <div class="row mb-4 first">
+                                <div class="col-md-12">
+                                    <input type="number"
+                                        class="form-control text-center font-weigth-bolder text-dark-50 form-control-solid h-auto p-6 rounded-lg font-size-h6"
+                                        placeholder="Page Count" id="page_count" name="page_count" required />
+                                </div>
+                            </div>
+                    
+                            <div class="row mb-4 first">
+                                <div class="col-md-12">
+                                    <input type="number"
+                                        class="form-control text-center font-weigth-bolder text-dark-50 form-control-solid h-auto p-6 rounded-lg font-size-h6"
+                                        placeholder="Current ARPU" id="current_arpu" name="current_arpu" required />
+                                </div>
+                            </div>
+
+                            <div class="row mb-4 second">
+                                <div class="col-md-12">
+                                    <input type="text"
+                                        class="form-control text-center font-weigth-bolder text-dark-50 form-control-solid h-auto p-6 rounded-lg font-size-h6"
+                                        placeholder="First Name" id="first_name" name="first_name" required />
+                                </div>
+                            </div>
+
+                            <div class="row mb-4 second">
+                                <div class="col-md-12">
+                                    <input type="email"
+                                        class="form-control text-center font-weigth-bolder text-dark-50 form-control-solid h-auto p-6 rounded-lg font-size-h6"
+                                        placeholder="Email Address" id="email_address" name="email_address" required />
+                                </div>
+                            </div>
+                    
+                            <button id="btn-submit" class="btn btn-dark font-weight-boldest font-size-h6 px-8 py-5 btn-block" type="submit">
+                                NEXT
+                            </button>
+                    
+                            <div class="pt-5 text-center">
+                                <span class="text-muted font-weight-bolder font-size-h6"><a href="/" target="_blank">menu</a>
+                                    / <a href="/" target="_blank">menu</a> / <a href="/" target="_blank">menu</a>
+                            </div>
+                    
+                        </div>
+                    
+                    </form>
 
                     <!-- ===============================================-->
                     <!--    form ends here -->
@@ -66,5 +130,38 @@
         </div>
     </div>
 </div>
+</body>
+<script>
+var divsToHide = document.getElementsByClassName("second"); //divsToHide is an array
+    for(var i = 0; i < divsToHide.length; i++){
+        divsToHide[i].style.display = "none"; // depending on what you're doing
+    }
 
+    var page_count = document.getElementById("page_count");
+    var current_arpu = document.getElementById("current_arpu");
+    var first_name = document.getElementById("first_name");
+    var email_address = document.getElementById("email_address");
+    var isFirstComplete = false;
+
+    document.getElementById('btn-submit').onclick = function(e){
+        if(!isFirstComplete){
+            if(page_count.value !=null && page_count.value != "" && current_arpu.value !=null && current_arpu.value != ""){
+            e.preventDefault();
+            isFirstComplete = true;
+            var firstDivs = document.getElementsByClassName("first");
+            for(var i = 0; i < firstDivs.length; i++){
+                firstDivs[i].style.display = "none";
+            }
+            for(var i = 0; i < divsToHide.length; i++){
+                divsToHide[i].style.display = "block"; // depending on what you're doing
+            }
+            document.getElementById('btn-submit').innerHTML="SUBMIT";
+          }
+        }
+        else if(first_name.value !=null && first_name.value != "" && email_address.value !=null && email_address.value != ""){
+            document.form.submit();
+        }
+}
+
+</script>
 </html>

@@ -6,5 +6,7 @@ urlpatterns = [
 
     path('', views.index, name='index'),
     path('thanks', views.thanks, name='thanks'),
+    path('submitForm', views.submitForm, name='submitForm'),
+    path('test',views.getGroup)
         
 ]

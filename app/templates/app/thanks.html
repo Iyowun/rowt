@@ -1,4 +1,4 @@
-
+{% load static %}
 
 
 <!DOCTYPE html>
@@ -17,11 +17,11 @@
         content="In ~10 seconds, you can build your own Automated API, Business API, and Custom API without limitations. Save money, time, and resources. Generate an API." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    <link href="/static/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/css/goat.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="/static/assets/media/logos/logo_primary_letter.png" />
+    <link href="{% static '/assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/assets/plugins/custom/prismjs/prismjs.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/assets/css/goat.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{% static '/assets/media/logos/logo_primary_letter.png' %}" />
 </head>
 
 <!-- ===============================================-->
@@ -36,7 +36,7 @@
                 <div class="login-form login-signup">
                     <form class="container" id="form">
                         <div class="text-center pb-8"><img alt="Relcanonical Logo"
-                                src="/static/assets/media/logos/logo_primary_letter.png" class="max-h-20px" />
+                                src="{% static '/assets/media/logos/logo_primary_letter.png' %}" class="max-h-20px" />
                         </div>
                         <div class="pb-4 pt-lg-0 pt-0 text-center">
                             <h3 class="font-weight-boldest text-dark font-size-h4 display-2">Create ~2M dynamic pages from<br /> your own <mark>Keyword API</mark> in minutes.</h3>

@@ -2,3 +2,6 @@ from django.shortcuts import render, HttpResponse
 
 def index(request):
     return render(request, 'app/index.html')
+
+def thanks(request):
+    return render(request, 'app/thanks.html')

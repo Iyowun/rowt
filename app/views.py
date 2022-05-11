@@ -4,6 +4,8 @@ from django.conf import settings
 from mailersend import emails
 from mailerlite import MailerLiteApi
 import math
+import locale
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 
 def index(request):
@@ -58,11 +60,15 @@ def submitForm(request):
 
         mailer.set_mail_from(mail_from, mail_body)
         mailer.set_mail_to(recipients, mail_body)
-        mailer.set_subject("ROWT Estimate", mail_body)
-        content = getHTMLTemplateForMail(page_count, current_arpu, first_name, estimated_crawl, 
-        estimated_visits, estimated_conversions, rowt)
-        mailer.set_html_content(content, mail_body)
-        #mailer.set_plaintext_content("This is the text content", mail_body)
+        mailer.set_subject(first_name+", your ROWT estimate", mail_body)
+        content = getTextTemplateForMail(locale.format("%d", math.ceil(page_count), grouping=True), 
+        locale.format("%d", math.ceil(current_arpu), grouping=True),
+        first_name,
+        locale.format("%d", estimated_crawl, grouping=True),
+        locale.format("%d", estimated_visits, grouping=True),
+        locale.format("%d", estimated_conversions, grouping=True),
+        locale.format("%d", rowt, grouping=True))
+        mailer.set_plaintext_content(content, mail_body)
         mailer.set_reply_to(reply_to, mail_body)
 
         # using print() will also return status code and data
@@ -70,165 +76,24 @@ def submitForm(request):
         api.groups.add_single_subscriber(group_id=54475389360145449, subscribers_data={"email": email_address, "name": first_name}, autoresponders=False, resubscribe=False, as_json=False)
     return redirect(settings.ROWT_REDIRECT_URL)
 
-def getHTMLTemplateForMail(page_count, current_arpu, first_name, estimated_crawl, 
+def getTextTemplateForMail(page_count, current_arpu, first_name, estimated_crawl, 
         estimated_visits, estimated_conversions, rowt):
-        return '''<!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:o="urn:schemas-microsoft-com:office:office"
->
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="x-apple-disable-message-reformatting" />
-    <title></title>
-    <!--[if mso]>
-      <style>
-        table {
-          border-collapse: collapse;
-          border-spacing: 0;
-          border: none;
-          margin: 0;
-        }
-        div,
-        td {
-          padding: 0;
-        }
-        div {
-          margin: 0 !important;
-        }
-      </style>
-      <noscript>
-        <xml>
-          <o:OfficeDocumentSettings>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-          </o:OfficeDocumentSettings>
-        </xml>
-      </noscript>
-    <![endif]-->
-    <style>
-      table,
-      td,
-      div,
-      h1,
-      p {
-        font-family: Arial, sans-serif;
-      }
-      @media screen and (max-width: 530px) {
-        .unsub {
-          display: block;
-          padding: 8px;
-          margin-top: 14px;
-          border-radius: 6px;
-          background-color: #555555;
-          text-decoration: none !important;
-          font-weight: bold;
-        }
-        .col-lge {
-          max-width: 100% !important;
-        }
-      }
-      @media screen and (min-width: 531px) {
-        .col-sml {
-          max-width: 27% !important;
-        }
-        .col-lge {
-          max-width: 73% !important;
-        }
-      }
-    </style>
-  </head>
-  <body
-    style="
-      margin: 0;
-      padding: 0;
-      word-spacing: normal;
-      background-color: #939297;
-    "
-  >
-    <div
-      role="article"
-      aria-roledescription="email"
-      lang="en"
-      style="
-        text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-        background-color: #939297;
-      "
-    >
-      <table
-        role="presentation"
-        style="width: 100%; border: none; border-spacing: 0"
-      >
-        <tr>
-          <td align="center" style="padding: 0">
-            <!--[if mso]>
-          <table role="presentation" align="center" style="width:600px;">
-          <tr>
-          <td>
-          <![endif]-->
-            <table
-              role="presentation"
-              style="
-                width: 94%;
-                max-width: 600px;
-                border: none;
-                border-spacing: 0;
-                text-align: left;
-                font-family: Arial, sans-serif;
-                font-size: 16px;
-                line-height: 22px;
-                color: #363636;
-              "
-            >
-              <tr>
-                <td style="padding: 30px; background-color: #ffffff">
-                  <h1
-                    style="
-                      margin-top: 0;
-                      margin-bottom: 16px;
-                      font-size: 26px;
-                      line-height: 32px;
-                      font-weight: bold;
-                      letter-spacing: -0.02em;
-                    "
-                  >
-                    Hi, '''+first_name+'''! 
-                  </h1>
-                  <p style="margin: 0">
-                    Kindly find your ROWT Estimate below: <br /><br />
-                    Page Count: '''+str(page_count)+''' <br />
-                    Current ARPU: £'''+str(current_arpu)+'''<br />
-                    ====================<br />
-                    Estimated Crawls: '''+str(estimated_crawl)+'''<br />
-                    Estimated Monthy Visits: '''+str(estimated_visits)+'''<br />
-                    Estimated Monthly Conversions: '''+str(estimated_conversions)+'''<br />
-                    ====================<br />
-                    Estimated ROWT: £'''+str(rowt)+'''<br />
-                    ====================<br /><br />
+        return '''Hi, '''+first_name+'''!
 
-                    ROWT is a product of Relcanonical.<br />
-                    <a href="https://relcanonical.com/account/request"
-                      >Create 400k+ Pages with Dynamic Content in 2s</a
-                    >
-                    <br /><br />
+Kindly find your ROWT Estimate below:
 
-                    ROWT, Inc.<br />
-                  </p>
-                </td>
-              </tr>
-            </table>
-            <!--[if mso]>
-          </td>
-          </tr>
-          </table>
-          <![endif]-->
-          </td>
-        </tr>
-      </table>
-    </div>
-  </body>
-</html>
+Page Count: '''+str(page_count)+'''
+Current ARPU: £'''+str(current_arpu)+'''
+====================
+Estimated Crawls: '''+str(estimated_crawl)+'''
+Estimated Monthy Visits: '''+str(estimated_visits)+'''
+Estimated Monthly Conversions: '''+str(estimated_conversions)+'''
+====================
+Estimated ROWT: £'''+str(rowt)+'''
+====================
+
+ROWT is a product of Relcanonical.
+Create 400k+ Pages with Dynamic Content in 2s
+
+ROWT, Inc.
 '''

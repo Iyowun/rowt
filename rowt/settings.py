@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qs@!3ee%+9!o)m!7yavxu%o$*&s!hm9uh1r-_$44p9yfbo5hj='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['rowt.co.uk','localhost','seal-app-tamk6.ondigitalocean.app']
+ALLOWED_HOSTS = ['rowt.co.uk','localhost','127.0.0.1','seal-app-tamk6.ondigitalocean.app']
 
 
 # Application definition
@@ -113,7 +113,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 # Default primary key field type

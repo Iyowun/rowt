@@ -16,11 +16,11 @@
         content="We use Page Count & ARPU to estimate Crawls, Traffic, & Sales. The Estimate is then applied to calculate the ROWT of your site. Estimate Your ROWT!" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    <link href="/static/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/css/goat.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="/static/assets/media/logos/logo_primary_letter.png" />
+    <link href="{% static '/assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/assets/plugins/custom/prismjs/prismjs.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/assets/css/goat.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{% static '/assets/media/logos/logo_primary_letter.png' %}" />
 </head>
 
 <!-- ===============================================-->
@@ -40,7 +40,7 @@
 
                     <form action="/submitForm" class="container" method="POST" id="form" name="form">
                         {% csrf_token %}
-                        <div class="text-center pb-8"><img alt="ROWT Logo" src="/static/assets/media/logos/logo_primary_letter.png"
+                        <div class="text-center pb-8"><img alt="ROWT Logo" src="{% static '/assets/media/logos/logo_primary_letter.png' %}"
                                 class="max-h-20px" />
                         </div>
                     

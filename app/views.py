@@ -5,7 +5,7 @@ from mailersend import emails
 from mailerlite import MailerLiteApi
 import math
 import locale
-locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 
 def index(request):
@@ -94,6 +94,7 @@ Estimated ROWT: £'''+str(rowt)+'''
 
 ROWT is a product of Relcanonical.
 Create 400k+ Pages with Dynamic Content in 2s
+https://relcanonical.com/account/request
 
 ROWT, Inc.
 '''

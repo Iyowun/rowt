@@ -5,7 +5,7 @@ from mailersend import emails
 from mailerlite import MailerLiteApi
 import math
 import locale
-locale.setlocale(locale.LC_ALL, 'en_US.utf')
+locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 
 def index(request):

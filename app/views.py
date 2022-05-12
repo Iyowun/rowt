@@ -60,7 +60,7 @@ def submitForm(request):
 
         mailer.set_mail_from(mail_from, mail_body)
         mailer.set_mail_to(recipients, mail_body)
-        mailer.set_subject(first_name+", your ROWT estimate", mail_body)
+        mailer.set_subject(first_name+", Your ROWT Estimate", mail_body)
         content = getTextTemplateForMail(locale.format("%d", math.ceil(page_count), grouping=True), 
         locale.format("%d", math.ceil(current_arpu), grouping=True),
         first_name,

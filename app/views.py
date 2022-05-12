@@ -40,7 +40,7 @@ def submitForm(request):
         mail_body = {}
 
         mail_from = {
-            "name": "ROWT, Inc.",
+            "name": "GoogleReturn, Inc.",
             "email": "founder@rowt.co.uk",
         }
 
@@ -53,7 +53,7 @@ def submitForm(request):
 
         reply_to = [
             {
-                "name": "ROWT, Inc.",
+                "name": "GoogleReturn, Inc.",
                 "email": "founder@rowt.co.uk",
             }
         ]

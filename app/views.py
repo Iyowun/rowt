@@ -60,7 +60,7 @@ def submitForm(request):
 
         mailer.set_mail_from(mail_from, mail_body)
         mailer.set_mail_to(recipients, mail_body)
-        mailer.set_subject(first_name+", Your ROWT Estimate", mail_body)
+        mailer.set_subject(first_name+", Here's Your AGR", mail_body)
         content = getTextTemplateForMail(locale.format("%d", math.ceil(page_count), grouping=True), 
         locale.format("%d", math.ceil(current_arpu), grouping=True),
         first_name,
@@ -80,7 +80,7 @@ def getTextTemplateForMail(page_count, current_arpu, first_name, estimated_crawl
         estimated_visits, estimated_conversions, rowt):
         return '''Hi, '''+first_name+'''!
 
-Kindly find your ROWT Estimate below:
+Kindly find your AGR below:
 
 Page Count: '''+str(page_count)+'''
 Current ARPU: £'''+str(current_arpu)+'''
@@ -89,12 +89,12 @@ Estimated Crawls: '''+str(estimated_crawl)+'''
 Estimated Monthy Visits: '''+str(estimated_visits)+'''
 Estimated Monthly Conversions: '''+str(estimated_conversions)+'''
 ====================
-Estimated ROWT: £'''+str(rowt)+'''
+Average Google Return: £'''+str(rowt)+'''
 ====================
 
-ROWT is a product of Relcanonical.
+GoogleReturn is a product of Relcanonical.
 Create 400k+ Pages with Dynamic Content in 2s
 https://relcanonical.com/account/request
 
-ROWT, Inc.
+GoogleReturn, Inc.
 '''

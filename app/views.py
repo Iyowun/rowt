@@ -40,8 +40,8 @@ def submitForm(request):
         mail_body = {}
 
         mail_from = {
-            "name": "GoogleReturn, Inc.",
-            "email": "founder@rowt.co.uk",
+            "name": "GoogleReturn",
+            "email": "agr@googlereturn.com",
         }
 
         recipients = [
@@ -53,8 +53,8 @@ def submitForm(request):
 
         reply_to = [
             {
-                "name": "GoogleReturn, Inc.",
-                "email": "founder@rowt.co.uk",
+                "name": "GoogleReturn",
+                "email": "agr@googlereturn.com",
             }
         ]
 
@@ -73,7 +73,7 @@ def submitForm(request):
 
         # using print() will also return status code and data
         print(mailer.send(mail_body))
-        api.groups.add_single_subscriber(group_id=54475389360145449, subscribers_data={"email": email_address, "name": first_name}, autoresponders=False, resubscribe=False, as_json=False)
+        api.groups.add_single_subscriber(group_id=54900432258991155, subscribers_data={"email": email_address, "name": first_name}, autoresponders=False, resubscribe=False, as_json=False)
     return redirect(settings.ROWT_REDIRECT_URL)
 
 def getTextTemplateForMail(page_count, current_arpu, first_name, estimated_crawl, 
@@ -96,5 +96,5 @@ GoogleReturn is a product of Relcanonical.
 Create 400k+ Pages with Dynamic Content in 2s
 https://relcanonical.com/account/request
 
-GoogleReturn, Inc.
+GoogleReturn
 '''

@@ -16,8 +16,6 @@
         content="We use Page Count & ARPU to estimate Crawls, Traffic, & Sales. The Estimate is then applied to calculate the ROWT of your site. Estimate Your ROWT!" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-    <link href="{% static '/assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static '/assets/plugins/custom/prismjs/prismjs.bundle.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static '/assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static '/assets/css/goat.css' %}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="{% static '/assets/media/logos/logo_primary_letter.png' %}" />
@@ -96,7 +94,7 @@
                             </button>
                     
                             <div class="pt-5 text-center">
-                                <span class="text-muted font-weight-bolder font-size-h6"><a href="/">back</a>
+                                <span class="text-muted font-weight-bolder font-size-h6"><a id="back_button" href="/">back</a>
                                     / <a href="https://kpi.rowt.co.uk/" target="_blank">algorithm</a> / <a href="https://kpi.rowt.co.uk/" target="_blank">read</a>
                             </div>
                     
@@ -143,6 +141,20 @@ var divsToHide = document.getElementsByClassName("second"); //divsToHide is an a
     var email_address = document.getElementById("email_address");
     var isFirstComplete = false;
 
+    document.getElementById('back_button').onclick = function(e){
+        e.preventDefault();
+        if(isFirstComplete){
+            for(var i = 0; i < divsToHide.length; i++){
+                divsToHide[i].style.display = "none"; // depending on what you're doing
+            }
+            var firstDivs = document.getElementsByClassName("first");
+            for(var i = 0; i < firstDivs.length; i++){
+                firstDivs[i].style.display = "block";
+            }
+            document.getElementById('btn-submit').innerHTML="NEXT";
+            isFirstComplete=false;
+        }
+    }
     document.getElementById('btn-submit').onclick = function(e){
         if(!isFirstComplete){
             if(page_count.value !=null && page_count.value != "" && current_arpu.value !=null && current_arpu.value != ""){

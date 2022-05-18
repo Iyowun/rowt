@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-qs@!3ee%+9!o)m!7yavxu%o$*&s!hm9uh1r-_$44p9yfbo5hj=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['rowt.co.uk','googlereturn.com','localhost','127.0.0.1','seal-app-tamk6.ondigitalocean.app']
+ALLOWED_HOSTS = ['rowt.co.uk','localhost','127.0.0.1','seal-app-tamk6.ondigitalocean.app']
 
 
 # Application definition
@@ -122,7 +122,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # constants for rowt calculations
-ROWT_REDIRECT_URL = "https://googlereturn.com/thanks"
+ROWT_REDIRECT_URL = "https://rowt.co.uk/thanks"
 ROWT_ESTIMATED_CRAWL = 85
 ROWT_ESTIMATED_VISIT = 5000
 ROWT_ESTIMATED_CONVERSIONS = 2.5

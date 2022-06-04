@@ -122,7 +122,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # constants for rowt calculations
-ROWT_REDIRECT_URL = "https://rowt.co.uk/thanks"
+ROWT_REDIRECT_URL = "thanks"
 ROWT_ESTIMATED_CRAWL = 85
 ROWT_ESTIMATED_VISIT = 5000
 ROWT_ESTIMATED_CONVERSIONS = 2.5
